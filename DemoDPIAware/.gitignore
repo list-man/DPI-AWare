@@ -1,0 +1,9 @@
+#ignore object files
+*.obj
+#ignore log files
+*.log
+#ignore other files
+*.sdf
+*.exe
+*ilk
+*.pdb
