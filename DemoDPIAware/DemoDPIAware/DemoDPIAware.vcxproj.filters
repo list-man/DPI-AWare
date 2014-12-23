@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Source Files\ResourcePack">
+      <UniqueIdentifier>{3f65038a-5292-4564-8819-12e79301e05b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="ReadMe.txt" />
@@ -42,6 +45,33 @@
     <ClInclude Include="DPISetting.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="ResourceManager\IResourcePack.h">
+      <Filter>Source Files\ResourcePack</Filter>
+    </ClInclude>
+    <ClInclude Include="ResourceManager\ColorPack.h">
+      <Filter>Source Files\ResourcePack</Filter>
+    </ClInclude>
+    <ClInclude Include="ResourceManager\FontPack.h">
+      <Filter>Source Files\ResourcePack</Filter>
+    </ClInclude>
+    <ClInclude Include="ResourceManager\ResourcePack.h">
+      <Filter>Source Files\ResourcePack</Filter>
+    </ClInclude>
+    <ClInclude Include="ResourceManager\TexturePack.h">
+      <Filter>Source Files\ResourcePack</Filter>
+    </ClInclude>
+    <ClInclude Include="ResourceManager\IResourceManager.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ResourceManager\PackManager.h">
+      <Filter>Source Files\ResourcePack</Filter>
+    </ClInclude>
+    <ClInclude Include="ResourceManager\ResourceManager.h">
+      <Filter>Source Files\ResourcePack</Filter>
+    </ClInclude>
+    <ClInclude Include="IObjectFactory.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -55,6 +85,24 @@
     </ClCompile>
     <ClCompile Include="DPISetting.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ResourceManager\ResourcePack.cpp">
+      <Filter>Source Files\ResourcePack</Filter>
+    </ClCompile>
+    <ClCompile Include="ResourceManager\ColorPack.cpp">
+      <Filter>Source Files\ResourcePack</Filter>
+    </ClCompile>
+    <ClCompile Include="ResourceManager\TexturePack.cpp">
+      <Filter>Source Files\ResourcePack</Filter>
+    </ClCompile>
+    <ClCompile Include="ResourceManager\FontPack.cpp">
+      <Filter>Source Files\ResourcePack</Filter>
+    </ClCompile>
+    <ClCompile Include="ResourceManager\PackManager.cpp">
+      <Filter>Source Files\ResourcePack</Filter>
+    </ClCompile>
+    <ClCompile Include="ResourceManager\ResourceManager.cpp">
+      <Filter>Source Files\ResourcePack</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -25,4 +25,16 @@
 
 #include <atlapp.h>
 #include <atlgdi.h>
+
+#include <GdiPlus.h>
+#pragma comment(lib, "GdiPlus")
+
+#include <string>
+#include <map>
+#include <list>
+
+#ifndef CheckPointer
+#define CheckPointer(p, r)  \
+        if (!p) return r;
+#endif
 // TODO: reference additional headers your program requires here

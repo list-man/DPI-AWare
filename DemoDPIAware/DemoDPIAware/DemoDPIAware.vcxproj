@@ -51,7 +51,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)../include/wtl81</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)../include/wtl81;$(ProjectDir)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -83,7 +83,16 @@
     <ClInclude Include="DemoDPIAware.h" />
     <ClInclude Include="DPISetting.h" />
     <ClInclude Include="Frame.h" />
+    <ClInclude Include="IObjectFactory.h" />
     <ClInclude Include="Resource.h" />
+    <ClInclude Include="ResourceManager\ColorPack.h" />
+    <ClInclude Include="ResourceManager\FontPack.h" />
+    <ClInclude Include="ResourceManager\IResourceManager.h" />
+    <ClInclude Include="ResourceManager\IResourcePack.h" />
+    <ClInclude Include="ResourceManager\PackManager.h" />
+    <ClInclude Include="ResourceManager\ResourceManager.h" />
+    <ClInclude Include="ResourceManager\ResourcePack.h" />
+    <ClInclude Include="ResourceManager\TexturePack.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
@@ -91,6 +100,12 @@
     <ClCompile Include="DemoDPIAware.cpp" />
     <ClCompile Include="DPISetting.cpp" />
     <ClCompile Include="Frame.cpp" />
+    <ClCompile Include="ResourceManager\ColorPack.cpp" />
+    <ClCompile Include="ResourceManager\FontPack.cpp" />
+    <ClCompile Include="ResourceManager\PackManager.cpp" />
+    <ClCompile Include="ResourceManager\ResourceManager.cpp" />
+    <ClCompile Include="ResourceManager\ResourcePack.cpp" />
+    <ClCompile Include="ResourceManager\TexturePack.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
