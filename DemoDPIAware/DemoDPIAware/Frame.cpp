@@ -1,10 +1,12 @@
 #include "stdafx.h"
 #include "Frame.h"
 #include "DPISetting.h"
+#include "ResourceManager/ResourceManager.h"
+#include "ResourceManager/PackManager.h"
 
 CFrame::CFrame()
 {
-    m_buttonSize.cx = 40;
+    m_buttonSize.cx = 28;
     m_buttonSize.cy = 26;
     m_captionHeight = 30;
 
@@ -27,6 +29,26 @@ LRESULT CFrame::OnCreate(UINT _uMsg, WPARAM _wParam, LPARAM _lParam, BOOL& _bHan
     dwStyle &= ~WS_THICKFRAME;
     dwStyle &= ~WS_CAPTION;
     ::SetWindowLong(m_hWnd, GWL_STYLE, dwStyle);
+
+    CResourceManager::CreateInstance(NULL, &m_spResMgr);
+    if (m_spResMgr)
+    {
+        wchar_t szPath[_MAX_PATH] = {0};
+        GetModuleFileName(NULL, szPath, _MAX_PATH);
+        PathRemoveFileSpec(szPath);
+        PathAppend(szPath, _T("..\\DemoDPIAware\\res"));
+
+        CDPISetting* gdpi = CDPISetting::Instance();
+
+//         m_buttonSize.cx = gdpi->ScaleX(m_buttonSize.cx);
+//         m_buttonSize.cy = gdpi->ScaleY(m_buttonSize.cy);
+        CString str;
+        str.Format(_T("%d"), CResourceManager::GetFixedDPI(gdpi->GetDPIX()));
+
+        CComPtr<IResourcePack> pack;
+        CPackManager::LoadPack(szPath, (LPCTSTR)str, &pack);
+        m_spResMgr->AddPack(pack);
+    }
 
     return 0;
 }
@@ -51,11 +73,11 @@ LRESULT CFrame::OnSize(UINT _uMsg, WPARAM _wParam, LPARAM _lParam, BOOL& _bHandl
 
     int rightOffset = widthUnScaled - m_gap;
     m_rectClose = CRect(rightOffset - m_buttonSize.cx, 0, rightOffset, m_buttonSize.cy);
-    rightOffset -= m_gap;
+    rightOffset -= m_buttonSize.cx + m_gap;
     m_rectMaximize = CRect(rightOffset - m_buttonSize.cx, 0, rightOffset, m_buttonSize.cy);
-    rightOffset -= m_gap;
+    rightOffset -= m_buttonSize.cx + m_gap;
     m_rectMinimize = CRect(rightOffset - m_buttonSize.cx, 0, rightOffset, m_buttonSize.cy);
-    rightOffset -= m_gap;
+    rightOffset -= m_buttonSize.cx + m_gap;
     m_rectChangeSkin = CRect(rightOffset - m_buttonSize.cx, 0, rightOffset, m_buttonSize.cy);
 
     g_dpi->ScaleRect(m_rectClose);
@@ -226,7 +248,44 @@ void CFrame::_PaintCaption(Gdiplus::Graphics& _graphics, const CRect& _rect)
 
 void CFrame::_PaintButton(Gdiplus::Graphics& _graphics, EKButton _kbutton, const CRect& _rect)
 {
+    do 
+    {
+        std::wstring name;
+        switch (_kbutton)
+        {
+        case kChangeSkin:
+            name = _T("sys_changeskin.png");
+            break;
+        case kClose:
+            name = _T("sys_close.png");
+            break;
+        case kMaximize:
+            name = _T("sys_maximize.png");
+            break;
+        case kMinimize:
+            name = _T("sys_minimize.png");
+            break;
+        default:
+            break;
+        }
 
+        if (!m_spResMgr) break;
+
+        std::wstring path;
+        m_spResMgr->GetImage(name, path);
+        Gdiplus::Image* image = CResourceManager::CreateImage(path);
+        if (!image) break;
+
+        int width = image->GetWidth();
+        int height = image->GetHeight();
+
+        Gdiplus::RectF dest(_rect.left, _rect.top, _rect.Width(), _rect.Height());
+        Gdiplus::RectF src(width/4, 0, width/4, height);
+        _graphics.DrawImage(image, dest, src.GetLeft(), src.GetTop(), src.Width, src.Height, Gdiplus::UnitPixel);
+
+        delete image;
+        image = NULL;
+    } while (false);
 }
 // END protected.
 //////////////////////////////////////////////////////////////////////////

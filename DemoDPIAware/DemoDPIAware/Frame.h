@@ -1,6 +1,8 @@
 #ifndef _3F4C458B_771B_49A4_AEF8_EBF17F0A3799_H_
 #define _3F4C458B_771B_49A4_AEF8_EBF17F0A3799_H_
 
+#include "ResourceManager/IResourceManager.h"
+
 class CFrame :
     public CWindowImpl<CFrame>
 {
@@ -56,6 +58,8 @@ private:
     CSize m_buttonSize;
     CPoint m_initWndPos;
     CSize m_initWndSize;
+
+    CComPtr<IResourceManager> m_spResMgr;
 };
 
 #endif // _3F4C458B_771B_49A4_AEF8_EBF17F0A3799_H_

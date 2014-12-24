@@ -166,5 +166,28 @@ HRESULT CResourceManager::GetPack(const std::wstring& _name, IResourcePack** _pa
 
     return result;
 }
+
+/*
+static
+*/
+int CResourceManager::GetFixedDPI(int _dpi)
+{
+    if (_dpi > 96)
+    {
+        return 192;
+    }
+    else
+    {
+        return 96;
+    }
+}
+
+/*
+static
+*/
+Gdiplus::Image* CResourceManager::CreateImage(const std::wstring& _path)
+{
+    return Gdiplus::Image::FromFile(_path.c_str(), FALSE);
+}
 // END protected.
 //////////////////////////////////////////////////////////////////////////

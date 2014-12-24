@@ -6,6 +6,8 @@
 #include "Frame.h"
 #include "DPISetting.h"
 
+CComModule _Module;
+
 
 int APIENTRY _tWinMain(HINSTANCE hInstance,
                      HINSTANCE hPrevInstance,

@@ -3,6 +3,8 @@
 
 #include "ResourceManager/IResourceManager.h"
 
+class Image;
+
 class CResourceManager :
     public CComObjectRootEx<CComMultiThreadModel>, 
     public CComCoClass<CResourceManager>,
@@ -25,6 +27,8 @@ public:
 
 public:
     HRESULT GetPack(const std::wstring& _name, IResourcePack** _pack);
+    static int GetFixedDPI(int _dpi);
+    static Gdiplus::Image* CreateImage(const std::wstring& _path);
 protected:
     typedef std::list<CComPtr<IResourcePack>> PACKCHAIN;
     PACKCHAIN m_packs;

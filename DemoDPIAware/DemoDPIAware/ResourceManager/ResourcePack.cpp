@@ -68,17 +68,39 @@ HRESULT CResourcePack::GetPackName(std::wstring& _name)
 
 HRESULT CResourcePack::GetImage(const std::wstring& _name, std::wstring& _path)
 {
-    return S_OK;
+    if (m_textures)
+    {
+        wchar_t szPath[_MAX_PATH] = {0};
+        memcpy(szPath, m_root.c_str(), m_root.size()*2);
+        PathAppend(szPath, m_tag.c_str());
+        PathAppend(szPath, _name.c_str());
+
+        _path = szPath;
+        return S_OK;
+        //return m_textures->GetImage(_name, _path);
+    }
+
+    return E_FAIL;
 }
 
 HRESULT CResourcePack::GetFont(const std::wstring& _name, HFONT& _font)
 {
-    return S_OK;
+    if (m_fonts)
+    {
+        return m_fonts->GetFont(_name, _font);
+    }
+
+    return E_FAIL;
 }
 
 HRESULT CResourcePack::GetColor(const std::wstring& _name, DWORD& _color)
 {
-    return S_OK;
+    if (m_colors)
+    {
+        return m_colors->GetColor(_name, _color);
+    }
+
+    return E_FAIL;
 }
 
 HRESULT CResourcePack::AddFont(const std::wstring& _name, const HFONT& _font)
